@@ -82,24 +82,25 @@ export default function Home() {
       </div>
 
       <div className='grid grid-cols-3 h-[30%]  ml-[28.2%]'>
-<Link href='/Social'>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.01, ease: 'easeInOut' }}
-          className='mt-36 ml-[-35%]'>
-          <SocialAnalyzer />
-        </motion.div>
+        <Link href='/Social'>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.01, ease: 'easeInOut' }}
+            className='mt-36 ml-[-35%]'>
+            <SocialAnalyzer />
+          </motion.div>
         </Link>
         <Link href='/Location'>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.5, ease: 'easeInOut' }}
-          className='mt-36 ml-[-35%]'>
-          <Location />
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.5, ease: 'easeInOut' }}
+            className='mt-36 ml-[-35%]'>
+            <Location />
+          </motion.div>
         </Link>
+        <Link href='/UPIFinder'>
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -107,6 +108,8 @@ export default function Home() {
           className='mt-36 ml-[-35%]'>
           <UPIFinder />
         </motion.div>
+        </Link>
+        <Link href='/VehicleSearch'>
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -114,6 +117,7 @@ export default function Home() {
           className='mt-24 ml-[-35%]'>
           <Vehicle />
         </motion.div>
+        </Link>
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -126,60 +130,62 @@ export default function Home() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 2.8, ease: 'easeInOut' }}
           className='mt-24 ml-[-35%]'>
-          <FaceDetection/>
+          <FaceDetection />
         </motion.div>
       </div>
 
-<div className='grid mx-4 -mt-8'>
-      <motion.div
+      <div className='grid mx-4 -mt-8'>
+        <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 3.2, ease: 'easeInOut' }}>
-      <SDRAnalysis/>
-      </motion.div>
+          <SDRAnalysis />
+        </motion.div>
 
-<Link href='/TimeConvertor'>
-      <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 3.8, ease: 'easeInOut' }}
-          className='mt-24'>
-     <TimeConvertor/>
-      </motion.div>
-</Link>
+        <Link href='/TimeConvertor'>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 3.8, ease: 'easeInOut' }}
+            className='mt-24'>
+            <TimeConvertor />
+          </motion.div>
+        </Link>
 
-      <motion.div
+        <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 4.2, ease: 'easeInOut' }}
           className='mt-24'>
- <GasConnection/>
-      </motion.div>
-    
-</div>
-<div className='grid mx-2  ml-[88%] -mt-48'>
-      <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 4.6, ease: 'easeInOut' }}>
-      <IMEIInfo/>
-      </motion.div>
-      <motion.div
+          <GasConnection />
+        </motion.div>
+
+      </div>
+      <div className='grid mx-2  ml-[88%] -mt-48'>
+        <Link href='/IMEInfo'>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 4.6, ease: 'easeInOut' }}>
+            <IMEIInfo />
+          </motion.div>
+        </Link>
+        <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 5.0, ease: 'easeInOut' }}
           className='mt-24'>
-      <CellIDTracker/>
-      </motion.div>
-      <motion.div
+          <CellIDTracker />
+        </motion.div>
+        <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 5.6, ease: 'easeInOut' }}
           className='mt-24'>
-      <CyberSecurityUpdates/>
-      </motion.div>
-    
-</div>
+          <CyberSecurityUpdates />
+        </motion.div>
+
+      </div>
     </div>
   )
 }

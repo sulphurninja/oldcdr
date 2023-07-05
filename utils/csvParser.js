@@ -120,33 +120,6 @@ function findMaxSMS(records) {
   }));
 }
 
-function findMaxSMS(records) {
-  const smsCounts = {};
-
-  records.forEach((record) => {
-    const callingNo = record['B PARTY NUMBER'] || record['B Party No'];
-    const serviceType = record['Service Type'] || record['Call Type'];
-
-    if (callingNo && callingNo.trim() !== '' && serviceType && serviceType.trim() === 'SMS') {
-      const normalizedNumber = callingNo.replace(/^91|^\+91/, '');
-      const countKey = normalizedNumber.startsWith('91') ? normalizedNumber.substr(2) : normalizedNumber;
-      const caller = smsCounts[countKey] || {
-        number: normalizedNumber.length === 8 ? '91' + normalizedNumber : normalizedNumber,
-        count: 0,
-      };
-
-      caller.count++;
-      smsCounts[countKey] = caller;
-    }
-  });
-
-  const sortedSMSCounts = Object.values(smsCounts).sort((a, b) => b.count - a.count).slice(0, 20);
-
-  return sortedSMSCounts.map(({ number, count }) => ({
-    number,
-    count,
-  }));
-}
 
 
 

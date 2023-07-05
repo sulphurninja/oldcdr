@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import { useRouter } from 'next/router';
 
 export default function CDRAnalysis() {
-
   const [selectedFile, setSelectedFile] = useState(null);
   const [commonCaller, setCommonCaller] = useState(null);
   const [longDurationCaller, setLongDurationCaller] = useState(null);
@@ -102,7 +101,7 @@ export default function CDRAnalysis() {
                       <h1 className="text-2xl absolute w-full -mt-14 ml-[200%] text-yellow-200 font-bold font-mono">{`📱 ${caller.displayNumber} `}</h1>
                     )}
                     <p className="text-2xl text-white font-bold mb-2">{caller.number}</p>
-                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Duration: {caller.duration}</p> 
+                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Duration: {caller.duration}</p>
                   </div>
                 ))}
               </div>
@@ -126,7 +125,7 @@ export default function CDRAnalysis() {
                     )} */}
                     <p className="text-2xl text-white font-bold mb-2">{caller.imei}</p>
                     <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Count: {caller.count}</p>
-                   
+
                   </div>
                 ))}
               </div>
@@ -149,9 +148,9 @@ export default function CDRAnalysis() {
                       <h1 className="text-2xl absolute w-full -mt-14 ml-[130%] text-yellow-200 font-bold font-mono">{`📱 ${caller.displayNumber} `}</h1>
                     )}
                     <div className='border-b-2 border-white flex'>
-                    <p className="text-md  text-white font-bold mb-2">{caller.number}</p>
-                    <p className="text-md text-green-500 pl-4 font-bold pt-2">Count: {caller.count}</p>
-                    
+                      <p className="text-md  text-white font-bold mb-2">{caller.number}</p>
+                      <p className="text-md text-green-500 pl-4 font-bold pt-2">Count: {caller.count}</p>
+
                     </div>
                   </div>
                 ))}
