@@ -21,7 +21,7 @@ export default function VehicleSearch() {
     }
   };
 
-  return (
+  return (   
     <div className='h-screen w-screen'>
       <video autoPlay muted className="absolute inset-0 object-cover w-full h-full">  {/** Background Video */}
         <source src="/bg.mp4" type="video/mp4" />
