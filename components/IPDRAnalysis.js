@@ -7,7 +7,7 @@ export default function IPDRAnalysis() {
       <motion.div whileHover={{
         scale: 1.05,
         transition: { duration: 0.2 },
-      }} className='absolute cursor-pointer   h-[15%]'>
+      }} className='absolute cursor-pointer h-[8%]   md:h-[15%]'>
 
         <label className='cursor-pointer'>
 

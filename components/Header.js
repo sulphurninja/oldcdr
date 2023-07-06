@@ -8,19 +8,19 @@ export default function Header() {
   };
 
   return (
-    <div >
-    <div className='h-[10%] w-[10%] mt-12'>
+    <div className='h-[50%] ml-16 md:ml-[30%]' >
+    <div className='h-[100%] w-[5%] mt-12'>
     <img src='/logo.png' className='h-full w-full' />
 
     </div>
       <motion.div
-        className='absolute top-0 left-0  w-full'
+        className='absolute md:w-[30%]  w-[50%]'
         initial='initial'
         animate='animate'
         variants={variants}
         transition={{ duration: 0.8 }}
       >
-        <img src="/header.png" alt="Header Image" className="ml-[30%]" />
+        <img src="/header.png" alt="Header Image" className="w-full h-full" />
       </motion.div>
     </div>
   );

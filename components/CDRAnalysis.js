@@ -65,11 +65,11 @@ export default function CDRAnalysis() {
       case 0:
         return (
           <div className="opacity-95 rounded-xl w-[90%] h-screen">
-            <div className="h-[65%] w-[65%] bg-black mt-12">
+            <div className="h-[65%] w-[65%] bg-black  ">
               <img src="/2.png" className="absolute h-[80%] w-[80%]" />
             </div>
             {Array.isArray(commonCaller) ? (
-              <div className="grid grid-cols-1 -mt-80 ml-80 absolute">
+              <div className="grid grid-cols-1  ml-80 absolute">
                 {commonCaller.map((caller, index) => (
                   <div key={index} className="flex">
                     {index === 0 && (
@@ -191,20 +191,13 @@ export default function CDRAnalysis() {
     }
   };
 
-
-
-
-
-
-
-
   return (
-    <div className=''>
+    <div className='absolute  cursor-pointer h-[8%]  md:h-[15%]'>
 
       <motion.div whileHover={{
         scale: 1.05,
         transition: { duration: 0.2 },
-      }} className='absolute  cursor-pointer  h-[15%]'>
+      }} className='h-full'>
 
         <label className='cursor-pointer'>
 
@@ -219,6 +212,8 @@ export default function CDRAnalysis() {
         </label>
 
       </motion.div>
+
+
       {parsedData && (
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
