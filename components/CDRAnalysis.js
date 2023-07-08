@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { parseCSV, findMaxSMS, findCommonCaller, findCommonIMEI, findMaxDurationCallers } from './../utils/csvParser';
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router';
+import { Swipeable } from 'react-swipeable';
+import Modal from './Modal';
 
 export default function CDRAnalysis() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -11,6 +13,7 @@ export default function CDRAnalysis() {
   const [maxSMS, setMaxSMS] = useState(null);
   const [parsedData, setParsedData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false)
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const totalSlides = 5;
 
@@ -47,6 +50,7 @@ export default function CDRAnalysis() {
           setCommonIMEI(findCommonIMEI(parsedData));
           setIsLoading(false);
         }, 2000);
+        setShowModal(true);
       };
       reader.readAsText(file);
     }
@@ -60,48 +64,47 @@ export default function CDRAnalysis() {
     setActiveSlideIndex((prevIndex) => prevIndex - 1);
   };
 
+ 
+
+
+
   const renderSlideContent = () => {
     switch (activeSlideIndex) {
       case 0:
         return (
-          <div className="opacity-95 rounded-xl w-[90%] h-screen">
-            <div className="h-[65%] w-[65%] bg-black  ">
-              <img src="/2.png" className="absolute h-[80%] w-[80%]" />
-            </div>
-            {Array.isArray(commonCaller) ? (
-              <div className="grid grid-cols-1  ml-80 absolute">
-                {commonCaller.map((caller, index) => (
-                  <div key={index} className="flex">
-                    {index === 0 && (
-                      <h1 className="text-2xl absolute w-full -mt-14 ml-[130%] text-yellow-200 font-bold font-mono">{`📱 ${caller.displayNumber} `}</h1>
-                    )}
-                    <p className="text-2xl text-white font-bold mb-2">{caller.number}</p>
-                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Count: {caller.count}</p>
-                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Incoming: {caller.incoming}</p>
-                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Outgoing: {caller.outgoing}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>{commonCaller}</p>
-            )}
+          <div className="  ">
+      
+             
+     
+            {/**/}
+              {/* 
+                    {/* {index === 0 && (
+                      <h1 className="text-xs    text-yellow-200 font-bold font-mono">{`📱 ${caller.displayNumber} `}</h1>
+                    )} */}
+                    {/* */}
+                  {/* </div> */} 
+                {/* ))} */}
+              {/* </div> */}
+            {/* // ) : (
+            //   <p>{commonCaller}</p>
+            // )} */}
           </div>
         );
       case 1:
         return (
-          <div className="opacity-95 rounded-xl w-[90%] h-screen">
-            <div className="h-[65%] w-[65%] bg-black mt-12">
-              <img src="/3.png" className="absolute h-[80%] w-[80%]" />
-            </div>
+          <div className=" rounded-xl  absolute h-[40%] w-[95%] ml-[18%]   md:w-[70%] md:h-[80%] md:ml-[55%] md:mt-[18%] mt-[100%] z-50  ">
+      
+          <img src="/3.png" className="h-[100%] w-[100%] rounded-2xl " />
+
             {Array.isArray(longDurationCaller) ? (
-              <div className="grid grid-cols-1 -mt-80 ml-80 absolute">
+              <div className="grid grid-cols-1 w-[80%] ml-[8%] h-[70%] md:overflow-visible overflow-y-scroll  lg:mt-[-49%] md:ml-[15%] mt-[-70%]">
                 {longDurationCaller.map((caller, index) => (
                   <div key={index} className="flex">
-                    {index === 0 && (
+                    {/* {index === 0 && (
                       <h1 className="text-2xl absolute w-full -mt-14 ml-[200%] text-yellow-200 font-bold font-mono">{`📱 ${caller.displayNumber} `}</h1>
-                    )}
-                    <p className="text-2xl text-white font-bold mb-2">{caller.number}</p>
-                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Duration: {caller.duration}</p>
+                    )} */}
+                    <p className="text-xs md:text-xl text-white font-bold mb-2">{caller.number}</p>
+                    <p className="text-[10px] text-green-500 pl-4 font-bold ">Duration: {caller.duration}</p>
                   </div>
                 ))}
               </div>
@@ -112,19 +115,18 @@ export default function CDRAnalysis() {
         );
       case 2:
         return (
-          <div className="opacity-95 rounded-xl w-[90%] h-screen">
-            <div className="h-[65%] w-[65%] bg-black mt-12">
-              <img src="/4.png" className="absolute h-[80%] w-[80%]" />
-            </div>
+          <div className=" rounded-xl  absolute h-[40%] w-[95%] ml-[18%]   md:w-[70%] md:h-[80%] md:ml-[55%] md:mt-[18%] mt-[100%] z-50  ">
+      
+          <img src="/4.png" className="h-[100%] w-[100%] rounded-2xl " />
             {Array.isArray(commonIMEI) ? (
-              <div className="grid grid-cols-1 -mt-80 ml-80 absolute">
+              <div className="grid grid-cols-1 w-[80%] ml-[8%] h-[70%] md:overflow-visible overflow-y-scroll  lg:mt-[-49%] md:ml-[15%] mt-[-70%]">
                 {commonIMEI.map((caller, index) => (
                   <div key={index} className="flex">
                     {/* {index === 0 && (
                       <h1 className="text-2xl absolute w-full -mt-14 ml-[130%] text-yellow-200 font-bold font-mono">{`📱 ${caller} `}</h1>
                     )} */}
-                    <p className="text-2xl text-white font-bold mb-2">{caller.imei}</p>
-                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Count: {caller.count}</p>
+                    <p className="text-xs md:text-xl text-white font-bold mb-2">{caller.imei}</p>
+                    <p className="text-[10px] text-green-500 pl-4 font-bold ">Count: {caller.count}</p>
 
                   </div>
                 ))}
@@ -136,22 +138,21 @@ export default function CDRAnalysis() {
         );
       case 3:
         return (
-          <div className="opacity-95 rounded-xl w-[90%] h-screen">
-            <div className="h-[65%] w-[65%] bg-black mt-12">
-              <img src="/6.png" className="absolute h-[80%] w-[80%]" />
-            </div>
+          <div className=" rounded-xl  absolute h-[40%] w-[95%] ml-[18%]   md:w-[70%] md:h-[80%] md:ml-[55%] md:mt-[18%] mt-[100%] z-50  ">
+      
+          <img src="/6.png" className="h-[100%] w-[100%] rounded-2xl " />
             {Array.isArray(maxSMS) ? (
-              <div className="grid grid-cols-2 gap-x-4 mt-[-25%] ml-48 absolute">
+              <div className="grid grid-cols-1 w-[80%] ml-[8%] h-[70%] md:overflow-visible overflow-y-scroll  lg:mt-[-49%] md:ml-[15%] mt-[-70%]">
                 {maxSMS.map((caller, index) => (
                   <div key={index} className="flex">
-                    {index === 0 && (
+                    {/* {index === 0 && (
                       <h1 className="text-2xl absolute w-full -mt-14 ml-[130%] text-yellow-200 font-bold font-mono">{`📱 ${caller.displayNumber} `}</h1>
-                    )}
-                    <div className='border-b-2 border-white flex'>
-                      <p className="text-md  text-white font-bold mb-2">{caller.number}</p>
-                      <p className="text-md text-green-500 pl-4 font-bold pt-2">Count: {caller.count}</p>
+                    )} */}
+                   
+                      <p className="text-xs md:text-xl text-white font-bold mb-2">{caller.number}</p>
+                      <p className="text-xs text-green-500 pl-4 font-bold ">Count: {caller.count}</p>
 
-                    </div>
+         
                   </div>
                 ))}
               </div>
@@ -160,35 +161,34 @@ export default function CDRAnalysis() {
             )}
           </div>
         )
-      case 4:
-        return (
-          <div className="opacity-95 rounded-xl w-[90%] h-screen">
-            <div className="h-[65%] w-[65%] bg-black mt-12">
-              <img src="/5.png" className="absolute h-[80%] w-[80%]" />
-            </div>
-            {Array.isArray(longDurationCaller) ? (
-              <div className="grid grid-cols-1 -mt-80 ml-80 absolute">
-                {longDurationCaller.map((caller, index) => (
-                  <div key={index} className="flex">
-                    {index === 0 && (
-                      <h1 className="text-2xl absolute w-full -mt-14 ml-[130%] text-yellow-200 font-bold font-mono">{`📱 ${caller.displayNumber} `}</h1>
-                    )}
-                    <p className="text-2xl text-white font-bold mb-2">{caller.number}</p>
-                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Count: {caller.count}</p>
-                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Incoming: {caller.incoming}</p>
-                    <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Outgoing: {caller.outgoing}</p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>{longDurationCaller}</p>
-            )}
-          </div>
-        )
+    //   case 4:
+    //     return (
+    //       <div className="opacity-95 rounded-xl w-[90%] h-screen">
+    //         <div className="h-[65%] w-[65%] bg-black mt-12">
+    //           <img src="/5.png" className="absolute h-[80%] w-[80%] md:-mt-20" />
+    //         </div>
+    //         {Array.isArray(longDurationCaller) ? (
+    //           <div className="grid grid-cols-1 -mt-80 ml-80 absolute">
+    //             {longDurationCaller.map((caller, index) => (
+    //               <div key={index} className="flex">
+    //                 {index === 0 && (
+    //                   <h1 className="text-2xl absolute w-full -mt-14 ml-[130%] text-yellow-200 font-bold font-mono">{`📱 ${caller.displayNumber} `}</h1>
+    //                 )}
+    //                 <p className="text-2xl text-white font-bold mb-2">{caller.number}</p>
+    //                 <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Count: {caller.count}</p>
+    //                 <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Incoming: {caller.incoming}</p>
+    //                 <p className="text-[10px] text-green-500 pl-4 font-bold pt-2">Outgoing: {caller.outgoing}</p>
+    //               </div>
+    //             ))}
+    //           </div>
+    //         ) : (
+    //           <p>{longDurationCaller}</p>
+    //         )}
+    //       </div>
+    //     )
 
-      default:
-        return null;
-    }
+    //   
+  }
   };
 
   return (
@@ -219,11 +219,20 @@ export default function CDRAnalysis() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="inset-0 flex items-center h-screen w-screen absolute justify-center bg-gray-900 bg-opacity-35"
+          className="inset-0 absolute flex items-center h-[100%] w-[100%]  justify-center " 
         >
-          <div className='rounded-lg p-8  w-full z-50 h-full flex items-center justify-center relative'>
-            <button
-              className='top-2  ml-[-2%]    rounded-lg w-[5%] z-1  mt-[-40%]  bg-red-500 text-4xl text-white hover:text-gray-400'
+        
+         
+            {/* Slide content */}
+       
+            <div className=' h-screen  w-screen'>
+            <div className=' w-full '>
+            <Modal isOpen={showModal} onClose={() => setShowModal(false)} parsedData={parsedData} />
+            {renderSlideContent()}
+            </div>
+            {/* */}
+            </div>
+            {/* <button className='bg-red-500 h-6 -ml-12 w-6 z-50 mt-2 text-white rounded-lg'
               onClick={() => {
                 setSelectedFile(null);
                 setCommonCaller(null);
@@ -232,33 +241,12 @@ export default function CDRAnalysis() {
                 setParsedData(null);
                 setActiveSlideIndex(0);
                 pageReload();
-              }}
-            >
-              X
-            </button>
-            {/* Slide content */}
-            {renderSlideContent()}
-
+              }}>X
+              </button> */}
             {/* Navigation buttons */}
-            <div className="absolute bottom-4 flex justify-center w-full space-x-4">
-              {activeSlideIndex > 0 && (
-                <button
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-                  onClick={handlePreviousSlide}
-                >
-                  Previous
-                </button>
-              )}
-              {activeSlideIndex < totalSlides - 1 && (
-                <button
-                  className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-                  onClick={handleNextSlide}
-                >
-                  Next
-                </button>
-              )}
-            </div>
-          </div>
+           
+            {/*  */}
+          {/* </div> */}
         </motion.div>
       )}
     </div>

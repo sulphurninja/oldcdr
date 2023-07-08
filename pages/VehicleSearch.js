@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import Header from '../components/Header';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function VehicleSearch() {
   const [vid, setVid] = useState('');
@@ -22,36 +23,42 @@ export default function VehicleSearch() {
   };
 
   return (
-    <div className='h-screen w-screen'>
-      <video autoPlay muted className="absolute inset-0 object-cover w-full h-full">  {/** Background Video */}
+    <div className=" h-screen w-screen absolute ">
+
+      <video autoPlay muted className="absolute  object-cover   w-full h-full">  {/** Background Video */}
         <source src="/bg.mp4" type="video/mp4" />
         Update your system atleast!
       </video>
-      <div className='h-[5%] absolute mt-[-2%] w-full'>
-        <Header />
+      <div className='h-[10%] w-[20%] md:w-[10%] md:h-[20%] absolute  '>
+        <Link href='/'>
+          <img src='/logo.png' className='h-full w-full' />
+        </Link>
       </div>
 
+      <div className='h-[5%] absolute md:mt-[-8%]  mt-[-18%] w-full'>
+        <Header />
+      </div>
       <motion.div
         initial={{ opacity: 0, scale: 0.8, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeInOut' }}
-        className='mt-40 h-[20%] w-[60%]   ml-[20%] text-center absolute'
+        className='mt-[65%] md:mt-[15%] w-[10%] h-[50%] md:w-[50%] md:h-[60%] absolute md:ml-[25%]   ml-[10%] text-center'
       >
-        <img src='/rto.png' className='absolute rounded-3xl' />
+        {/* <img src='/rto.png' className='h-full w-full md:block hidden rounded-3xl' /> */}
         <form className='-mt-12' onSubmit={handleSubmit}>
           <input
             type="text"
             value={vid}
             onChange={(e) => setVid(e.target.value)}
             placeholder="Enter Vehicle Number"
-            className='bg-white absolute text-black font-mono border-4 border-green-400 mt-36 -ml-36 h-12 rounded-xl px-2 '
+            className='bg-white absolute h-12 md:h-14 px-4 text-black font-mono border-4 border-green-400 md:mt-[10%] md:ml-[-20%]  rounded-xl  '
           />
-          <button className='bg-blue-400 font-bold font-mono hover:bg-blue-700 text-white absolute mt-36 h-12 ml-24 px-6 rounded-xl ' type="submit">Submit</button>
+          <button className='bg-blue-400 font-bold font-mono hover:bg-blue-700 text-white   rounded-xl absolute mt-[200%] md:mt-[10%] md:ml-[20%] md:p-4  px-4' type="submit">Submit</button>
         </form>
       </motion.div>
 
       {result && (
-        <div className='absolute text-white mt-[30%] w-[50%]  ml-[25%] font-mono font-bold text-2xl'>
+        <div className='absolute text-white md:mt-[25%] md:ml-[30%] md:w-[50%] mt-[102%] leading-10 ml-[5%] font-mono font-bold md:text-2xl text-sm'>
           {result.error ? (
             <p className='text-red-600 font-bold animate-pulse'>⚠️ Error Occurred!!!</p>
           ) : (

@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   };
 
   try {
-    const response = await fetch('https://api.apiclub.in/uat/v1/rc_info', options);
+    const response = await fetch('https://api.apiclub.in/api/v1/rc_info', options);
     const data = await response.json();
     console.log(data); // Log the response data to the console
 

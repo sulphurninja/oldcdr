@@ -41,6 +41,11 @@ export default function Home() {
         <source src="/bg.mp4" type="video/mp4" />
         Update your system atleast!
       </video>
+      <div className='h-[10%] w-[20%] md:w-[10%] md:h-[20%] absolute  '>
+        <Link href='/'>
+          <img src='/logo.png' className='h-full w-full' />
+        </Link>
+      </div>
 
       <div className='h-[5%] absolute md:mt-[-8%]  mt-[-22%] w-full'>
         <Header />
@@ -55,7 +60,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}     
+          transition={{ duration: 0.8, ease: 'easeInOut' }}
         >
           <IPDRAnalysis />
         </motion.div>
@@ -76,7 +81,7 @@ export default function Home() {
 
       </div>
 
-      <div className='grid grid-cols-3 md:grid-cols-3 md:mt-[15%] lg:mt-[12%] md:gap-y-16 h-[30%] lg:ml-[15%]  md:ml-[15%]   px-4 mt-[28%] '>
+      <div className='grid grid-cols-3 md:grid-cols-3 md:mt-[15%] lg:mt-[12%] md:gap-y-16  h-[30%] lg:ml-[15%]  md:ml-[15%]   px-4 mt-[28%] '>
         <Link href='/Social'>
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -94,20 +99,20 @@ export default function Home() {
           </motion.div>
         </Link>
         <Link href='/UPIFinder'>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.8, ease: 'easeInOut' }}>
-          <UPIFinder />
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.8, ease: 'easeInOut' }}>
+            <UPIFinder />
+          </motion.div>
         </Link>
         <Link href='/VehicleSearch'>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 2.1, ease: 'easeInOut' }}>
-          <Vehicle />
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 2.1, ease: 'easeInOut' }}>
+            <Vehicle />
+          </motion.div>
         </Link>
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
@@ -123,7 +128,7 @@ export default function Home() {
         </motion.div>
       </div>
 
-      
+
 
       <div className='grid grid-cols-3 md:grid-cols-1 md:gap-y-24 md:mt-[-18%] lg:mt-[-12%] gap-4 px-4 h-[10%]   '>
         <motion.div

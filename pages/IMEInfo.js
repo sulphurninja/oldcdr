@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import Header from '../components/Header';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function IMEIInfo() {
     const [imei, setImei] = useState('');
@@ -27,7 +28,12 @@ export default function IMEIInfo() {
         <source src="/bg.mp4" type="video/mp4" />
         Update your system atleast!
       </video>
-      <div className='h-[5%] absolute mt-[-2%] w-full'>
+      <div className='h-[10%] w-[20%] md:w-[10%] md:h-[20%] absolute  '>
+      <Link href='/'>
+      <img src='/logo.png' className='h-full w-full' />
+</Link> 
+    </div>
+      <div className='h-[5%] absolute md:mt-[-8%]  mt-[-22%] w-full'>
         <Header />
       </div>
 
@@ -37,16 +43,16 @@ export default function IMEIInfo() {
         transition={{ duration: 0.8, ease: 'easeInOut' }}
         className='mt-[15%] w-[50%]   ml-[25%] text-center absolute'
       >
-        <img src='/imei.png' className='absolute rounded-3xl' />
+        
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             value={imei}
             onChange={(e) => setImei(e.target.value)}
             placeholder="Enter IMEI Info"
-            className='bg-white absolute text-black font-mono border-4 border-green-400 mt-36 -ml-36 h-12 rounded-xl px-2 '
+            className='bg-white absolute text-black font-mono border-4 border-green-400 md:mt-10 mt-24 md:-ml-36 -ml-40 h-12 rounded-xl px-2 '
           />
-          <button className='bg-blue-400 font-bold font-mono hover:bg-blue-700 text-white absolute mt-36 h-12 ml-24 px-6 rounded-xl ' type="submit">Submit</button>
+          <button className='bg-blue-400 font-bold font-mono hover:bg-blue-700 text-white absolute md:mt-10 mt-24 h-12 md:ml-24 ml-14 px-6 rounded-xl ' type="submit">Submit</button>
         </form>
       </motion.div>
 

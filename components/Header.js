@@ -8,11 +8,9 @@ export default function Header() {
   };
 
   return (
-    <div className='h-[50%] ml-16 md:ml-[30%]' >
-    <div className='h-[100%] w-[5%] mt-12'>
-    <img src='/logo.png' className='h-full w-full' />
+    <div className='h-[50%] ml-16 md:ml-[30%] mt-16 ' >
 
-    </div>
+   
       <motion.div
         className='absolute md:w-[30%]  w-[50%]'
         initial='initial'
