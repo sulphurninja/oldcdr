@@ -9,7 +9,7 @@ import UPIFinder from '../components/UPIFinder'
 import Vehicle from '../components/Vehicle'
 import CourtCheck from '../components/CourtCheck'
 import { motion } from 'framer-motion'
-import FaceDetection from '../components/FaceDetection'
+import Fastag from '../components/Fastag'
 import GPRSCDRAnalysis from '../components/GPRSCDRAnalysis'
 import SDRAnalysis from '../components/SDRAnalysis'
 import GasConnection from '../components/GasConnection'
@@ -82,7 +82,7 @@ export default function Home() {
       </div>
 
       <div className='grid grid-cols-3 md:grid-cols-3 md:mt-[15%] lg:mt-[12%] md:gap-y-16  h-[30%] lg:ml-[15%]  md:ml-[15%]   px-4 mt-[28%] '>
-        <Link href='/Social'>
+        <Link href='/SocialAnalyzer'>
           <motion.div
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -124,7 +124,7 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 2.8, ease: 'easeInOut' }}>
-          <FaceDetection />
+          <Fastag />
         </motion.div>
       </div>
 

@@ -10,7 +10,6 @@ const Modal = ({ isOpen, onClose, parsedData }) => {
     const [maxSMS, setMaxSMS] = useState(null);
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
     const totalSlides = 4;
-
     const imageSources = ['/3.png', '/2.png', '/4.png',  '/6.png'];
 
 
