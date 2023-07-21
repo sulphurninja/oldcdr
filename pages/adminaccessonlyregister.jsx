@@ -4,7 +4,7 @@ import { DataContext } from '../store/GlobalState'
 import { postData } from '../utils/fetchData'
 import PopUpModal from '../components/PopUpModal'
 
-function register() {
+function Register() {
     const initialState = { userName: '', password: '' }
     const [userData, setUserData] = useState(initialState)
     const { userName, password } = userData
@@ -57,7 +57,7 @@ function register() {
     )
 }
 
-export default register
+export default Register
 
 
 
