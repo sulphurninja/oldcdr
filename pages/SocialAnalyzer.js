@@ -3,6 +3,7 @@ import React from 'react'
 import Header from '../components/Header'
 import UserNameAnalysis from '../components/UserNameAnalysis'
 import {motion} from 'framer-motion'
+import MobileNumberAnalysis from '../components/MobileNumberAnalysis'
 
 export default function SocialAnalyzer() {
   return (
@@ -26,6 +27,14 @@ export default function SocialAnalyzer() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeInOut' }}>
           <UserNameAnalysis/>
+        </motion.div>
+        </Link>
+        <Link href='/Mobile'>
+      <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeInOut' }}>
+          <MobileNumberAnalysis/>
         </motion.div>
         </Link>
      

@@ -1,183 +1,116 @@
-import CDRAnalysis from '../components/CDRAnalysis'
-import IPDRAnalysis from '../components/IPDRAnalysis'
-import DUMPAnalysis from '../components/DUMPAnalysis'
-import Location from '../components/Location'
-import Header from '../components/Header'
-import React, { useEffect } from 'react'
-import SocialAnalyzer from '../components/SocialAnalyzer'
-import UPIFinder from '../components/UPIFinder'
-import Vehicle from '../components/Vehicle'
-import CourtCheck from '../components/CourtCheck'
-import { motion } from 'framer-motion'
-import Fastag from '../components/Fastag'
-import GPRSCDRAnalysis from '../components/GPRSCDRAnalysis'
-import SDRAnalysis from '../components/SDRAnalysis'
-import GasConnection from '../components/GasConnection'
-import TimeConvertor from '../components/TimeConvertor'
-import IMEIInfo from '../components/IMEIInfo'
-import CellIDTracker from '../components/CellIDTracker'
-import CyberSecurityUpdates from '../components/CyberSecurityUpdates'
-import { Howl } from 'howler';
-import Link from 'next/link'
+import React, { useContext, useState, useEffect } from 'react'
+import { DataContext } from '../store/GlobalState'
+import { postData } from '../utils/fetchData'
+import Cookie from 'js-cookie'
+import { useRouter } from 'next/router'
 
-export default function Home() {
+function Login() {
+    const initialState = { userName: '', password: '' }
+    const [userData, setUserData] = useState(initialState)
+    const { userName, password } = userData
+    const { state = {}, dispatch } = useContext(DataContext)
+    const { auth = {} } = state
+    const router = useRouter()
 
-  useEffect(() => {
-    const sound = new Howl({
-      src: ['sound.mp3'],
-    });
-    sound.play();
+    const handleChangeInput = e => {
+        const { name, value } = e.target
+        setUserData({ ...userData, [name]: value })
+    }
 
-    return () => {
-      sound.unload();
-    };
-  }, []);
+    const handleSubmit = async e => {
+        e.preventDefault()
 
+        const res = await postData('auth/login', userData)
 
-  return (
-    <div className=" h-screen w-screen absolute ">
+        if (res.error) {
+            // If there is an error, do nothing and let the user try again
+            return
+        }
 
-      <video autoPlay muted className="absolute  object-cover   w-full h-full">  {/** Background Video */}
-        <source src="/bg.mp4" type="video/mp4" />
-        Update your system atleast!
-      </video>
-      <div className='h-[10%] w-[20%] md:w-[10%] md:h-[20%] absolute  '>
-        <Link href='/'>
-          <img src='/logo.png' className='h-full w-full' />
-        </Link>
-      </div>
+        dispatch({
+            type: 'AUTH',
+            payload: {
+                token: res.access_token,
+                user: res.user
+            }
+        })
 
-      <div className='h-[5%] absolute md:mt-[-8%]  mt-[-22%] w-full'>
-        <Header />
-      </div>
-      <div className='grid  grid-cols-2 md:grid-cols-4 md:mt-[15%] lg:mt-[10%]  mt-[28%] ml-11  gap-y-24  '>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}>
-          <CDRAnalysis />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-        >
-          <IPDRAnalysis />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-        >
-          <DUMPAnalysis />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeInOut' }}
-        >
-          <GPRSCDRAnalysis />
-        </motion.div>
+        Cookie.set('refreshtoken', res.refresh_token, {
+            path: '/api/auth/accessToken',
+            expires: 7
+        })
 
-      </div>
+        localStorage.setItem('firstLogin', 'true')
+    }
 
-      <div className='grid grid-cols-3 md:grid-cols-3 md:mt-[15%] lg:mt-[12%] md:gap-y-16  h-[30%] lg:ml-[15%]  md:ml-[15%]   px-4 mt-[28%] '>
-        <Link href='/SocialAnalyzer'>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1.01, ease: 'easeInOut' }}>
-            <SocialAnalyzer />
-          </motion.div>
-        </Link>
-        <Link href='/Location'>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1.5, ease: 'easeInOut' }}>
-            <Location />
-          </motion.div>
-        </Link>
-        <Link href='/UPIFinder'>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1.8, ease: 'easeInOut' }}>
-            <UPIFinder />
-          </motion.div>
-        </Link>
-        <Link href='/VehicleSearch'>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 2.1, ease: 'easeInOut' }}>
-            <Vehicle />
-          </motion.div>
-        </Link>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 2.5, ease: 'easeInOut' }}>
-          <CourtCheck />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 2.8, ease: 'easeInOut' }}>
-          <Fastag />
-        </motion.div>
-      </div>
+    useEffect(() => {
+        if (Object.keys(auth).length !== 0) {
 
+            router.push('/Home');
+        }
+    }, [auth, router]);
 
-
-      <div className='grid grid-cols-3 md:grid-cols-1 md:gap-y-24 md:mt-[-18%] lg:mt-[-12%] gap-4 px-4 h-[10%]   '>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 3.2, ease: 'easeInOut' }}>
-          <SDRAnalysis />
-        </motion.div>
-
-        <Link href='/TimeConvertor'>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 3.8, ease: 'easeInOut' }}>
-            <TimeConvertor />
-          </motion.div>
-        </Link>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 4.2, ease: 'easeInOut' }}>
-          <GasConnection />
-        </motion.div>
-
-      </div>
-      <div className='grid grid-cols-3 md:grid-cols-1 md:gap-y-24 md:mt-[-4.9%]  gap-4 px-4 h-[10%] md:ml-[89%]'>
-        <Link href='/IMEInfo'>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 4.6, ease: 'easeInOut' }}>
-            <IMEIInfo />
-          </motion.div>
-        </Link>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 5.0, ease: 'easeInOut' }}>
-          <CellIDTracker />
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 5.6, ease: 'easeInOut' }}>
-          <CyberSecurityUpdates />
-        </motion.div>
-
-      </div>
-    </div>
-  )
+    return (
+        <div className="h-screen w-screen absolute ">
+            <video autoPlay muted className="absolute  object-cover   w-full h-full">  {/** Background Video */}
+                <source src="/bg.mp4" type="video/mp4" />
+                Update your system atleast!
+            </video>
+            <div className="absolute mt-[30%] md:mt-16 ml-[35%]">
+                <img src='/Login.png' className='h-[40%] w-[70%] ' />
+                <form
+                    className=" rounded-2xl mt-[-70%] ml-4  p-4 "
+                    onSubmit={handleSubmit}
+                >
+                    <div className="pt-4">
+                        <label
+                            className="block text-white font-bold pb-4 text-2xl"
+                            htmlFor="username"
+                        >
+                            Username
+                        </label>
+                        <input
+                            className=" appearance-none rounded  text-2xl p-2 bg-black text-white leading-tight focus:outline-none focus:shadow-outline"
+                            id="username"
+                            name="userName"
+                            value={userName}
+                            onChange={handleChangeInput}
+                            type="text"
+                            placeholder="Username"
+                        />
+                    </div>
+                    <div className="py-4">
+                        <label
+                            className="block text-white text-2xl font-bold py-2"
+                            htmlFor="password"
+                        >
+                            Password
+                        </label>
+                        <input
+                            className="shadow appearance-none text-2xl rounded  py-2 px-3 bg-black text-white leading-tight focus:outline-none focus:shadow-outline"
+                            id="password"
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={handleChangeInput}
+                            placeholder="Enter Password"
+                        />
+                    </div>
+                    <div className="flex items-center justify-between  ml-auto mr-auto">
+                        <button
+                            className="bg-[#811029] hover:bg-[#ae1536] px-8 text-white font-bold py-2 rounded-full focus:outline-none focus:shadow-outline"
+                            type="submit"
+                        >
+                            Login
+                        </button>
+                    </div>
+                </form>
+                <p className="px-8 text-white text-xs">
+                    &copy;Garuda Intelligence Console - A3M NextGen Pvt.Ltd
+                </p>
+            </div>
+        </div>
+    )
 }
+
+export default Login

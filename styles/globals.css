@@ -2,3 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .printable-content,
+    .printable-content * {
+        visibility: visible;
+
+        height: 10%;
+        width: 20%;
+       
+
+
+    }
+
+    .printable-content {
+        position: absolute;
+        margin-left: -30%;
+        background-color: white;
+        color: black;
+        top: 0;
+        margin-top: -2%;
+        left: 0;
+        height: 100%;
+        width: 200%;
+        
+    &{
+        .garuda{
+            width: 10%;
+            height: 15%;
+            margin-left: 35%;
+        }
+        &{
+        .headd{
+            font-size: 240%;
+            width: 160%;
+            margin-left: 20%;
+            font-weight: bolder;
+        }
+    }
+    &{
+        .inter{
+            font-size: 240%;
+            width: 160%;
+            margin-left: 25%;
+            margin-top: 2%;
+            gap: 2%;
+            font-weight: bolder;
+        }
+    }
+    &{
+        .profile{
+           width: 20%;
+            height: 25%;
+            margin-top: -2%;
+            margin-left: 30%;
+        }
+    }
+    &{
+        .namee{
+            font-size: 300%;
+    margin-top: -5%;
+    margin-left: 30%;
+            color: black;
+        }
+    }
+    &{
+        .carrier{
+            font-size: 240%;
+    margin-left: 25%;
+    margin-top: -3%;
+            color: black;
+        }
+    }
+    &{
+        .phoneno{
+            font-size: 240%;
+            width: 200%;
+    margin-left: 25%;
+    margin-top: -5%;
+            color: black;
+        }
+    }
+    &{
+        .address{
+            font-size: 240%;
+            width: 200%;
+    margin-left: 25%;
+    margin-top: -5%;
+            color: black;
+        }
+    }
+    }
+    }
+}
