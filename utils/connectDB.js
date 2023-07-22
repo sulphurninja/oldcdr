@@ -1,20 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const connectDb = async () => {
-  try {
-    // Add your MongoDB connection URI here
-    const MONGODB_URI = 'mongodb+srv://aditya4sure:garudagaruda@garuda.8wznpts.mongodb.net/?retryWrites=true&w=majority';
-
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
-    console.log('Connected to MongoDB');
-  } catch (error) {
-    console.error('Failed to connect to MongoDB:', error);
+const connectDB = () =>{
+if (mongoose.connections[0].readyState){
+    console.log('Already connected Biatch!')
     return;
-  }
-};
+}
+mongoose.set("strictQuery", false);
+mongoose.connect(process.env.MONGODB_URI,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+}, err =>{
+    if(err) throw err;
+    console.log("Connected to Mongodb bitch!")
+})
+}
 
-export default connectDb;
+export default connectDB
