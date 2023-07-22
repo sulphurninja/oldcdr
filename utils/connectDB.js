@@ -1,18 +1,20 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
-const connectDB = () => {
-    if (mongoose.connections[0].readyState) {
-        console.log('Already connected Biatch!')
-        return;
-    }
-    mongoose.set("strictQuery", false);
-    mongoose.connect(process.env.MONGODB_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }, err => {
-        if (err) throw err;
-        console.log("Connected to Mongodb bitch!")
-    })
-}
+const connectDB = async () => {
+  if (mongoose.connections[0].readyState) {
+    console.log('Already connected Biatch!');
+    return;
+  }
 
-export default connectDB
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log('Connected to Mongodb bitch!');
+  } catch (err) {
+    console.error('Error connecting to MongoDB:', err.message);
+  }
+};
+
+export default connectDB;
